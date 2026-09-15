@@ -28,7 +28,7 @@
                   id="floatingInput"
                   placeholder="User1234"
                 />
-                <label for="floatingInput">Email address</label>
+                <label for="floatingInput">Correo electrónico</label>
               </div>
               <div class="form-floating mb-3">
                 <input
@@ -37,7 +37,7 @@
                   id="floatingPassword"
                   placeholder="Password"
                 />
-                <label for="floatingPassword">Password</label>
+                <label for="floatingPassword">Contraseña</label>
               </div>
               <div class="checkbox mb-3">
                 <label>
