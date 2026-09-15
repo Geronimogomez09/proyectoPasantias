@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class ControladorProducto extends Controller
 {
-    //
+        public function Principal(){
+    $productos=Producto::all();
+    return view('/producto/principal', compact('productos'));
+    }
 }
