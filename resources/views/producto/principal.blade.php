@@ -21,6 +21,7 @@
 
         .table th {
             white-space: nowrap;
+            background-color: #1263b4;
         }
 
         .table td {
@@ -47,137 +48,44 @@
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-dark bg-dark shadow-sm mb-4">
-        <div class="container-fluid px-4">
-
-            <span class="navbar-brand fw-bold">
-                Panel de Administración
-            </span>
-
-            <div class="d-flex align-items-center gap-3">
-                <span class="text-white">
-                    Productos
-                </span>
-
-                <a href="{{ url('/admin/productos/create') }}"
-                   class="btn btn-success">
-                    + Nuevo producto
-                </a>
-            </div>
-
-        </div>
-    </nav>
-
-
+    <header
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
+        >
+          <div class="col-md-3 mb-2 mb-md-0">
+            <a
+              href="/"
+              class="d-inline-flex link-body-emphasis text-decoration-none"
+            >
+              <svg
+                class="bi"
+                width="40"
+                height="32"
+                role="img"
+                aria-label="Bootstrap"
+              >
+                <use xlink:href="#bootstrap"></use>
+              </svg>
+            </a>
+          </div>
+          <ul
+            class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"
+          >
+            <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
+            <li><a href="#" class="nav-link px-2">Features</a></li>
+            <li><a href="#" class="nav-link px-2">Pricing</a></li>
+            <li><a href="#" class="nav-link px-2">FAQs</a></li>
+            <li><a href="#" class="nav-link px-2">About</a></li>
+          </ul>
+          <div class="col-md-3 text-end">
+            <button type="button" class="btn btn-outline-primary me-2">
+              Login
+            </button>
+            <button type="button" class="btn btn-primary">Sign-up</button>
+          </div>
+        </header>
+      </div>
+      <div class="b-example-divider"></div>
     <div class="container-fluid px-4">
-
-        <!-- ENCABEZADO -->
-        <div class="d-flex flex-column flex-md-row justify-content-between
-                    align-items-md-center mb-4 gap-3">
-
-            <div>
-                <h2 class="titulo mb-1">
-                    Productos
-                </h2>
-
-                <p class="text-muted mb-0">
-                    Administración del catálogo de productos
-                </p>
-            </div>
-
-            <div>
-                <span class="badge text-bg-primary fs-6">
-                    {{ count($productos) }} productos
-                </span>
-            </div>
-
-        </div>
-
-
-        <!-- TARJETAS DE INFORMACIÓN -->
-        <div class="row g-3 mb-4">
-
-            <div class="col-md-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-
-                            <div>
-                                <h6 class="text-muted mb-1">
-                                    Total de productos
-                                </h6>
-
-                                <h3 class="mb-0">
-                                    {{ count($productos) }}
-                                </h3>
-                            </div>
-
-                            <div class="fs-2">
-                                📦
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-
-                        <div class="d-flex justify-content-between">
-
-                            <div>
-                                <h6 class="text-muted mb-1">
-                                    Stock total
-                                </h6>
-
-                                <h3 class="mb-0">
-                                    {{ $productos->sum('stock') }}
-                                </h3>
-                            </div>
-
-                            <div class="fs-2">
-                                🏷️
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-
-                        <div class="d-flex justify-content-between">
-
-                            <div>
-                                <h6 class="text-muted mb-1">
-                                    Productos sin stock
-                                </h6>
-
-                                <h3 class="mb-0">
-                                    {{ $productos->where('stock', 0)->count() }}
-                                </h3>
-                            </div>
-
-                            <div class="fs-2">
-                                ⚠️
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
 
         <!-- TABLA -->
         <div class="card shadow-sm">
@@ -188,9 +96,9 @@
                 <div class="row align-items-center g-3">
 
                     <div class="col-md-6">
-                        <h5 class="mb-0">
+                        <h2 class="mb-0">
                             Lista de productos
-                        </h5>
+                        </h2>
 
                         <small class="text-muted">
                             Productos registrados en el sistema
@@ -406,4 +314,3 @@
 </body>
 
 </html>
-```
