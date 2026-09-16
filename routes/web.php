@@ -37,9 +37,11 @@ Route::get('/producto/principal/{id}/edit', [ControladorProducto::class, 'edit']
 Route::post('/producto/principal/{id}/update', [ControladorProducto::class, 'update']);
 Route::delete('/producto/principal/{id}', [ControladorProducto::class, 'destroy']);
 
-// Rutas de Usuarios / Login
+// Rutas de Usuarios / Login /logout
 Route::get('/usuarios/index', [ControladorUsuario::class, 'Usuario']);
 Route::post('/usuarios/index/login', [ControladorUsuario::class, 'login']);
+Route::post('/usuarios/logout', [ControladorUsuario::class, 'logout']);
+
 
 // Rutas de Registro
 Route::get('/usuarios/registro', [ControladorUsuario::class, 'registro']);

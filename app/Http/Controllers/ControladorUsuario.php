@@ -51,9 +51,10 @@ class ControladorUsuario extends Controller
     public function create(){
         return view('producto.principal.registro');
     }
-
+    
    public function login(Request $request)
 {
+    
     $reglas = [
         'email' => 'required|email|ends_with:gmail.com,hotmail.com,outlook.com,yahoo.com',
         'password' => 'required',
@@ -64,6 +65,7 @@ class ControladorUsuario extends Controller
         'email.ends_with' => 'Solo se permiten correos de proveedores válidos (Gmail, Hotmail, Outlook, Yahoo).',
         'password.required' => 'La contraseña es obligatoria.',
     ];
+    $validated = $request -> validate($reglas, $mensajes);
     $credenciales = [
         'email' => $request->email,
         'password' => $request->password,
@@ -88,5 +90,14 @@ class ControladorUsuario extends Controller
         ])->withInput();
     }
 }
+
+public function logout(Request $request)
+{
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect('/usuarios/index');
+}
+
 
 }
