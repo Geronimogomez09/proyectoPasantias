@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/producto/principal', "App\Http\Controllers\ControladorProducto@Principal");
+
 Route::get('/usuarios/index', "App\Http\Controllers\ControladorUsuario@Usuario");
+
+Route::get('/usuarios/registro', "App\Http\Controllers\ControladorUsuario@registro");
 
 Route::get('/producto/principal/create', "App\Http\Controllers\ControladorProducto@create");
 
