@@ -11,4 +11,12 @@ class ControladorProducto extends Controller
     $productos=Producto::all();
     return view('/producto/principal', compact('productos'));
     }
+
+    public function destroy($id)
+{
+    $producto= Producto::find($id);
+    $producto->delete();
+    return back();
+}
+
 }

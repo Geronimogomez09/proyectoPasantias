@@ -253,13 +253,12 @@
 
                                 <!-- ELIMINAR -->
                                 <form method="POST"
-                                      action="{{ url('/admin/productos/' . $producto->id) }}"
+                                      action="{{ url('/producto/principal/' . $producto->id) }}"
                                       class="d-inline"
                                       onsubmit="return confirm('¿Estás seguro de que deseas eliminar este producto?');">
-
-                                    @csrf
-                                    @method('DELETE')
-
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                    
                                     <button type="submit"
                                             class="btn btn-sm btn-danger"
                                             title="Eliminar producto">
