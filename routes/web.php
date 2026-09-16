@@ -10,6 +10,8 @@ Route::get('/usuarios/registro', "App\Http\Controllers\ControladorUsuario@regist
 
 Route::get('/producto/principal/create', "App\Http\Controllers\ControladorProducto@create");
 
+Route::post('/producto/principal/store', 'App\Http\Controllers\ControladorProducto@store');
+
 Route::get('/producto/principal/{id}/edit', 'App\Http\Controllers\ControladorProducto@edit');
 
 Route::post('/producto/principal/{id}/update', 'App\Http\Controllers\ControladorProducto@update');

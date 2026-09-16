@@ -49,8 +49,7 @@
 <body>
 
     <header
-          class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
-        >
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
           <div class="col-md-3 mb-2 mb-md-0">
             <a
               href="/"
@@ -76,14 +75,12 @@
             <li><a href="#" class="nav-link px-2">FAQs</a></li>
             <li><a href="#" class="nav-link px-2">About</a></li>
           </ul>
-          <div class="col-md-3 text-end">
-            <button type="button" class="btn btn-outline-primary me-2">
-              Login
-            </button>
-            <button type="button" class="btn btn-primary">Sign-up</button>
+          <div class="col-md-3 text-end me-4">
+            <button type="button" class="btn btn-primary ">logout</button>
           </div>
         </header>
-      </div>
+
+
       <div class="b-example-divider"></div>
     <div class="container-fluid px-4">
 
@@ -104,8 +101,6 @@
                             Productos registrados en el sistema
                         </small>
                     </div>
-
-
 
                     </div>
 
@@ -242,7 +237,7 @@
 
 
                                 <!-- EDITAR -->
-                                <a href="{{ url('/admin/productos/' . $producto->id . '/edit') }}"
+                                <a href="{{ url('/producto/principal/' . $producto->id . '/edit') }}"
                                    class="btn btn-sm btn-warning"
                                    title="Editar producto">
 
@@ -282,16 +277,14 @@
             </div>
 
 
-            <!-- FOOTER -->
             <div class="card-footer bg-white border-0 p-3">
-
                 <div class="d-flex justify-content-between align-items-center">
 
                     <small class="text-muted">
                         Mostrando {{ count($productos) }} productos
                     </small>
 
-                    <a href="{{ url('/admin/productos/create') }}"
+                    <a href="{{ url('/producto/principal/create') }}"
                        class="btn btn-primary">
 
                         + Agregar producto

@@ -17,7 +17,6 @@ class ProductoSeeder extends Seeder
     'descripcion_larga' => 'zapatilla de tela y suela caucho',
     'precio' => 234,
     'stock' => 20,
-    'imgURL' => 'hola',
 ]);
 
 Producto::create([
@@ -26,7 +25,6 @@ Producto::create([
     'descripcion_larga' => 'zapatilla de tela y suela caucho',
     'precio' => 144,
     'stock' => 20,
-    'imgURL' => 'hola',
 ]);
 
 Producto::create([
@@ -35,7 +33,6 @@ Producto::create([
     'descripcion_larga' => 'zapato de cuero y suela goma - caucho',
     'precio' => 424,
     'stock' => 20,
-    'imgURL' => 3,
 ]);
 
 Producto::create([
@@ -44,7 +41,6 @@ Producto::create([
     'descripcion_larga' => 'de cuero de vaca, con suela de caucho, goma',
     'precio' => 234,
     'stock' => 20,
-    'imgURL' => 3,
 ]);
 
 Producto::create([
@@ -53,7 +49,6 @@ Producto::create([
     'descripcion_larga' => 'zapatilla de tela, kevlar y suela caucho. impermeable, respirable',
     'precio' => 634,
     'stock' => 20,
-    'imgURL' => 'hola',
 ]);
     }
 }

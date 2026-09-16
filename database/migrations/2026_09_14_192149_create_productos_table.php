@@ -15,7 +15,6 @@ return new class extends Migration
         $table->text('descripcion_larga')->nullable(); // mayor a 255 caracteres, nullable indica que tomar valor null x defecto
         $table->float('precio');
         $table->unsignedBigInteger('stock');
-        $table->string('imgURL');
 
         $table->timestamps(); //luego en la BD timestamps: se divide en 2 campos, fecha creacion y fecha de actualizacion del registro
     });
