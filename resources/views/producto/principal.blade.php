@@ -69,11 +69,7 @@
           <ul
             class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"
           >
-            <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-            <li><a href="#" class="nav-link px-2">Features</a></li>
-            <li><a href="#" class="nav-link px-2">Pricing</a></li>
-            <li><a href="#" class="nav-link px-2">FAQs</a></li>
-            <li><a href="#" class="nav-link px-2">About</a></li>
+            <li><h1>Pagina principal de Productos</h1></li>
           </ul>
           <div class="col-md-3 text-end me-4">
             <button type="button" class="btn btn-primary ">logout</button>
@@ -226,23 +222,11 @@
                             <!-- ACCIONES -->
                             <td class="text-center acciones">
 
-                                <!-- VER -->
-                                <a href="{{ url('/admin/productos/' . $producto->id) }}"
-                                   class="btn btn-sm btn-info text-white"
-                                   title="Ver producto">
-
-                                    👁
-
-                                </a>
-
-
                                 <!-- EDITAR -->
                                 <a href="{{ url('/producto/principal/' . $producto->id . '/edit') }}"
                                    class="btn btn-sm btn-warning"
                                    title="Editar producto">
-
                                     ✏️
-
                                 </a>
 
 
@@ -253,13 +237,10 @@
                                       onsubmit="return confirm('¿Estás seguro de que deseas eliminar este producto?');">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                    
                                     <button type="submit"
                                             class="btn btn-sm btn-danger"
                                             title="Eliminar producto">
-
                                         🗑️
-
                                     </button>
 
                                 </form>
@@ -285,10 +266,8 @@
                     </small>
 
                     <a href="{{ url('/producto/principal/create') }}"
-                       class="btn btn-primary">
-
+                    class="btn btn-primary">
                         + Agregar producto
-
                     </a>
 
                 </div>

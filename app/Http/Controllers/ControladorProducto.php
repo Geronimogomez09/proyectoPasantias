@@ -44,7 +44,7 @@ public function update(Request $request, $id){
     public function store(Request $request){
     $reglas = [
         'nombre' => 'required|min:3|max:50',
-        'descripcion' => 'required|max:5',
+        'descripcion' => 'required|max:25',
         'precio' => 'required|numeric|min:0.1',
     ];
     $mensajes = [
