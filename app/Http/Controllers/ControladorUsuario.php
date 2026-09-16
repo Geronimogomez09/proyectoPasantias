@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\models\User;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ControladorUsuario extends Controller
 {
@@ -40,9 +41,13 @@ class ControladorUsuario extends Controller
         $user = new user();
         $user->nombre = $request->input('nombre');
         $user->email = $request->input('email');
-        $user->password = $request->input('password');
+        $user->password = Hash::make($request->input('password'));
         $user->save();
         return redirect('/producto/principal');
+    }
+
+    public function create(){
+        return view('producto.principal.registro');
     }
 
 }

@@ -17,22 +17,36 @@
             </h1>
           </div>
           <div class="col-md-10 mx-auto col-lg-5">
-            <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+            <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" method="post" action="/usuarios/registro/store">
+                    {{ csrf_field()}}
+              <div class="col-sm-5">
+                        @if ($errors->any())
+                        <div class="Alert alert-danger" align="left">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                <li> {{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                    </div>
                 <div class="form-floating mb-3">
                     <input
                      type="text"
                      class="form-control"
                      id="floatingInput"
                      placeholder="Nombre"
+                     name="nombre" value="{{ old('nombre')}}"
                      >
                      <label for="floatingInput">Nombre</label>
                 </div>
               <div class="form-floating mb-3">
                 <input
-                  type="text"
+                  type="email"
                   class="form-control"
                   id="floatingInput"
                   placeholder="User1234"
+                  name="email" value="{{ old('email')}}"
                 />
                 <label for="floatingInput">Correo electrónico</label>
               </div>
@@ -42,6 +56,7 @@
                   class="form-control"
                   id="floatingPassword"
                   placeholder="Password"
+                  name="password" value="{{ old('password')}}"
                 />
                 <label for="floatingPassword">Contraseña</label>
               </div>

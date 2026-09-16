@@ -15,3 +15,7 @@ Route::get('/producto/principal/{id}/edit', 'App\Http\Controllers\ControladorPro
 Route::post('/producto/principal/{id}/update', 'App\Http\Controllers\ControladorProducto@update');
 
 Route::delete('/producto/principal/{id}', 'App\Http\Controllers\ControladorProducto@destroy');
+
+route::post('/usuarios/registro/store','App\http\controllers\controladorUsuario@store');
+
+route::get('/usuarios/registro/create','App\http\controllers\controladorUsuario@create');
