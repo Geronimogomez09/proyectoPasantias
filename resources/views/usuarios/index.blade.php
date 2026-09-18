@@ -1,72 +1,78 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.auth')
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Usuario</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@section('titulo', 'Iniciar sesión')
+@section('marca-titulo', 'Gestión de productos para la práctica profesionalizante.')
+@section('marca-texto', 'Ingresá con tu cuenta para cargar, editar y controlar el catálogo del proyecto.')
 
-<body>
-  <div class="b-example-divider"></div>
-  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-    <div class="row align-items-center g-lg-5 py-5">
-      <div class="col-lg-7 text-center text-lg-start">
-        <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">
-          Bienvenido al CRUD del Proyecto de Pasantias de la E.P.E.T. N°20
-        </h1>
-        <p class="col-lg-10 fs-4">
-          Por favor inicia sesión para comenzar a utilizar el CRUD.
-        </p>
-      </div>
-      <div class="col-md-10 mx-auto col-lg-5">
-        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" method="post" action="/usuarios/index/login">
-    @csrf
-    
-    <!-- Bloque de errores estilizado con Bootstrap -->
+@section('contenido')
+
+<div class="card">
+
+    <h1 class="h3 mb-1">Iniciar sesión</h1>
+    <p class="text-muted mb-4">Usá el correo con el que te registraste.</p>
+
     @if ($errors->any())
-    <div class="alert alert-danger p-2 mb-3 small" role="alert">
-        {{ $errors->first() }}
-    </div>
+        <div class="alert alert-danger py-2 px-3 mb-3" role="alert" style="font-size:.92rem">
+            <i class="bi bi-exclamation-circle me-1"></i> {{ $errors->first() }}
+        </div>
     @endif
 
-    <div class="form-floating mb-3">
-      <input
-        type="email"
-        class="form-control"
-        id="floatingInput"
-        placeholder="User1234"
-        name="email"
-        value="{{ old('email') }}"/> <!-- Esto mantiene el email escrito si falla -->
-        
-      <label for="floatingInput">Correo electrónico</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input
-        type="password"
-        class="form-control"
-        id="floatingPassword"
-        placeholder="Password" 
-        name="password"
-         />
-      <label for="floatingPassword">Contraseña</label>
-    </div>
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me" /> Remember me
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">
-      Iniciar sesión
-    </button>
-    <p class="mt-4">No tiene un usuario? <a href="{{ "/usuarios/registro/" }}">Registrarse</a></p>
-    <hr class="my-4" />
-    <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
-</form>
-      </div>
-    </div>
-  </div>
-</body>
+    <form method="POST" action="{{ url('/usuarios/index/login') }}">
+        @csrf
 
-</html>
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" name="email"
+                   value="{{ old('email') }}" placeholder="nombre@epet20.edu.ar"
+                   autocomplete="email" required autofocus>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+
+            <div class="position-relative">
+                <input type="password" class="form-control pe-5" id="password" name="password"
+                       placeholder="••••••••" autocomplete="current-password" required>
+
+                <button type="button" id="verClave"
+                        class="btn btn-icono position-absolute border-0 bg-transparent"
+                        style="right:.3rem; top:50%; transform:translateY(-50%)"
+                        aria-label="Mostrar contraseña">
+                    <i class="bi bi-eye"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" id="remember" name="remember" value="1">
+            <label class="form-check-label" for="remember" style="font-size:.93rem">
+                Mantener la sesión iniciada
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-acento w-100 py-2">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Entrar
+        </button>
+
+        <p class="text-center text-muted mt-4 mb-0" style="font-size:.93rem">
+            ¿Todavía no tenés cuenta?
+            <a href="{{ url('/usuarios/registro') }}" class="fw-bold" style="color:var(--acero-claro)">Registrate</a>
+        </p>
+
+    </form>
+
+</div>
+
+<script>
+    const boton = document.getElementById('verClave');
+    const campo = document.getElementById('password');
+
+    boton.addEventListener('click', () => {
+        const oculta = campo.type === 'password';
+        campo.type = oculta ? 'text' : 'password';
+        boton.querySelector('i').className = oculta ? 'bi bi-eye-slash' : 'bi bi-eye';
+        boton.setAttribute('aria-label', oculta ? 'Ocultar contraseña' : 'Mostrar contraseña');
+    });
+</script>
+
+@endsection
