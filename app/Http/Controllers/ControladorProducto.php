@@ -28,7 +28,7 @@ class ControladorProducto extends Controller
 public function update(Request $request, $id){
         $reglas = [
         'nombre' => 'required|min:3|max:50',
-        'descripcion' => 'required|max:25',
+        'descripcion' => 'required|max:40',
         'precio' => 'required|numeric|min:0.1',
         'stock' => 'required|numeric|min:0',
     ];

@@ -13,6 +13,9 @@
         body {
             background-color: #f5f6f8;
         }
+        header{
+            padding: 5px;
+        }
 
         .card {
             border: none;
@@ -71,9 +74,18 @@
           >
             <li><h1>Pagina principal de Productos</h1></li>
           </ul>
-          <div class="col-md-3 text-end me-4">
-            <button type="button" class="btn btn-primary ">logout</button>
-          </div>
+           <div class="col-md-3 text-end">
+            <!-- Formulario de cierre de sesión -->
+            <form id="logout-form" action="/usuarios/logout" method="POST" style="display: none;">
+                @csrf
+            </form>
+
+            <!-- El botón o enlace que hace clic el usuario -->
+            <a href="#" class="btn btn-outline-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Cerrar sesión
+            </a>
+
+        </div>
         </header>
 
 
