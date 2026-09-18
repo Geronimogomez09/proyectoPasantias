@@ -1,75 +1,92 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>registro</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@extends('layouts.auth')
 
-<body>
-    <div class="b-example-divider"></div>
-      <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-        <div class="row align-items-center g-lg-5 py-5">
-          <div class="col-lg-7 text-center text-lg-start">
-            <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">
-              Por favor Registrate para comenzar a utilizar el CRUD.
-            </h1>
-          </div>
-          <div class="col-md-10 mx-auto col-lg-5">
-            <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" method="post" action="/usuarios/registro/store">
-                    {{ csrf_field()}}
-              <div class="col-sm-5">
-                        @if ($errors->any())
-                        <div class="Alert alert-danger" align="left">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                <li> {{$error}}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
-                    </div>
-                <div class="form-floating mb-3">
-                    <input
-                     type="text"
-                     class="form-control"
-                     id="floatingInput"
-                     placeholder="Nombre"
-                     name="nombre" value="{{ old('nombre')}}"
-                     >
-                     <label for="floatingInput">Nombre</label>
-                </div>
-              <div class="form-floating mb-3">
-                <input
-                  type="email"
-                  class="form-control"
-                  id="floatingInput"
-                  placeholder="User1234"
-                  name="email" value="{{ old('email')}}"
-                />
-                <label for="floatingInput">Correo electrónico</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="floatingPassword"
-                  placeholder="Password"
-                  name="password" value="{{ old('password')}}"
-                />
-                <label for="floatingPassword">Contraseña</label>
-              </div>
-              <div class="checkbox mb-3">
-              </div>
-              <button class="w-100 btn btn-lg btn-primary" type="submit">
-                Registrarse
-              </button>
-              <p class="mt-4">ya tienes cuenta? <a href="{{ "/usuarios/index/" }}">iniciar sesión</a></p>
-              <hr class="my-4" />
-            </form>
-          </div>
+@section('titulo', 'Crear cuenta')
+@section('marca-titulo', 'Creá tu cuenta y empezá a cargar el catálogo.')
+@section('marca-texto', 'Cada usuario accede con su propio correo y contraseña al sistema de productos.')
+
+@section('contenido')
+
+<div class="card">
+
+    <h1 class="h3 mb-1">Crear cuenta</h1>
+    <p class="text-muted mb-4">Tres datos y ya podés usar el sistema.</p>
+
+    @if ($errors->any())
+        <div class="alert alert-danger py-2 px-3 mb-3" role="alert" style="font-size:.92rem">
+            <div class="fw-bold mb-1">
+                <i class="bi bi-exclamation-circle me-1"></i> Revisá los datos
+            </div>
+            <ul class="mb-0 ps-3">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
-      </div>
-</body>
-</html>
+    @endif
+
+    <form method="POST" action="{{ url('/usuarios/registro/store') }}">
+        @csrf
+
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre y apellido</label>
+            <input type="text" class="form-control @error('nombre') is-invalid @enderror"
+                   id="nombre" name="nombre" value="{{ old('nombre') }}"
+                   placeholder="Juan Pérez" autocomplete="name" required autofocus>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control @error('email') is-invalid @enderror"
+                   id="email" name="email" value="{{ old('email') }}"
+                   placeholder="nombre@epet20.edu.ar" autocomplete="email" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="password" class="form-label">Contraseña</label>
+
+            <div class="position-relative">
+                <input type="password" class="form-control pe-5 @error('password') is-invalid @enderror"
+                       id="password" name="password" placeholder="Mínimo 8 caracteres"
+                       autocomplete="new-password" minlength="8" required>
+
+                <button type="button" id="verClave"
+                        class="btn btn-icono position-absolute border-0 bg-transparent"
+                        style="right:.3rem; top:50%; transform:translateY(-50%)"
+                        aria-label="Mostrar contraseña">
+                    <i class="bi bi-eye"></i>
+                </button>
+            </div>
+
+            <div class="form-text">Combiná letras y números para que sea más segura.</div>
+        </div>
+
+        <button type="submit" class="btn btn-acento w-100 py-2">
+            <i class="bi bi-person-plus me-1"></i> Crear cuenta
+        </button>
+
+        <p class="text-center text-muted mt-4 mb-0" style="font-size:.93rem">
+            ¿Ya tenés una cuenta?
+            <a href="{{ url('/usuarios/index') }}" class="fw-bold" style="color:var(--acero-claro)">Iniciá sesión</a>
+        </p>
+
+    </form>
+
+</div>
+
+<p class="text-center text-muted mt-3 mb-0" style="font-size:.82rem">
+    Al registrarte aceptás las condiciones de uso del sistema escolar.
+</p>
+
+<script>
+    const boton = document.getElementById('verClave');
+    const campo = document.getElementById('password');
+
+    boton.addEventListener('click', () => {
+        const oculta = campo.type === 'password';
+        campo.type = oculta ? 'text' : 'password';
+        boton.querySelector('i').className = oculta ? 'bi bi-eye-slash' : 'bi bi-eye';
+        boton.setAttribute('aria-label', oculta ? 'Ocultar contraseña' : 'Mostrar contraseña');
+    });
+</script>
+
+@endsection
