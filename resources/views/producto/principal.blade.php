@@ -7,9 +7,6 @@
 
 @php
     $coleccion   = collect($productos);
-    $totalStock  = $coleccion->sum('stock');
-    $valorTotal  = $coleccion->sum(fn ($p) => $p->precio * $p->stock);
-    $sinStock    = $coleccion->where('stock', '<=', 0)->count();
 @endphp
 
 <div class="container-fluid px-4">
@@ -126,13 +123,6 @@
 
                 </table>
 
-                <div id="sin-resultados" class="vacio d-none">
-                    <div class="simbolo"><i class="bi bi-search"></i></div>
-                    <h3 class="h6">Ningún producto coincide con la búsqueda</h3>
-                    <p class="text-muted mb-0">Probá con otra palabra o limpiá el campo.</p>
-                </div>
-            </div>
-
             <div class="card-footer">
                 <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
                     <small class="text-muted">
@@ -189,29 +179,6 @@
             const boton = evento.relatedTarget;
             document.getElementById('nombreEliminar').textContent = boton.dataset.nombre;
             document.getElementById('formEliminar').action = boton.dataset.url;
-        });
-    }
-
-    // Filtro en vivo sobre las filas ya renderizadas
-    const buscador = document.getElementById('buscador');
-
-    if (buscador) {
-        const filas    = Array.from(document.querySelectorAll('#cuerpo-tabla tr'));
-        const contador = document.getElementById('contador');
-        const aviso    = document.getElementById('sin-resultados');
-
-        buscador.addEventListener('input', () => {
-            const texto = buscador.value.trim().toLowerCase();
-            let visibles = 0;
-
-            filas.forEach((fila) => {
-                const coincide = fila.dataset.busqueda.includes(texto);
-                fila.classList.toggle('d-none', !coincide);
-                if (coincide) visibles++;
-            });
-
-            contador.textContent = visibles;
-            aviso.classList.toggle('d-none', visibles !== 0);
         });
     }
 </script>
